@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>resturant menu</title>
+    <link rel="stylesheet" href="style.css">
+
+
+</head>
+<body ng-controller="MenuController">
+<h1>Resturant Menu</h1>
+<menu>
+    <items-collection ng-repeat="department in menu track by $index" >
+        <h2 ng-bind="::department.name" title="{{::department.id}}"></h2>
+        <description ng-bind="::department.description"></description>
+
+        <items-body>
+            <item ng-repeat="item in department.items track by $index" title="{{::item.id}}">
+                <span class="name" ng-bind="::item.name"></span>
+                <span class="description" ng-bind="::item.description"></span>
+                <span class="price" ng-bind="::item.price"></span>
+                <modifiers-group ng-repeat="modifiersGroup in item.modifiersGroups">
+                    <span class="id" ng-bind="modifiersGroup.id"></span>
+                    <span class="name" ng-bind="modifiersGroup.name"></span>
+                    <span class="description" ng-bind="modifiersGroup.description"></span>
+                    <modifiers>
+                        <input type="checkbox" />
+                        <span class="id" ng-bind="::item.id"></span>
+                        <span class="name" ng-bind="::item.name"></span>
+                        <span class="description" ng-bind="::item.description"></span>
+                        <span class="price" ng-bind="::item.price"></span>
+                    </modifiers>
+                </modifiers-group>
+            </item>
+        </items-body>
+
+
+    </items-collection>
+
+
+</menu>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.4/lodash.js"></script>
+<script>
+    var app = angular.module('app', [])
+        .controller('MenuController', function($scope,$http) {
+            var url = "menu.json";
+            $http.get(url).then(function (res) {
+                $scope.menu = cleanData(res.data);
+            })
+
+        });
+
+    function cleanData(columns){
+        return _.map(columns, department =>  {
+            return {
+                id: department.id,
+                name: department.Name,
+                description: department.Description,
+                items: _.map(department.Classes[0].Items, item => {
+                    return {
+                        id: item.id,
+                        name: item.Name,
+                        description: item.Description,
+                        price: item.Price,
+                        modifiersGroups: _.map(item.ModifierGroups, modifiersGroup => {
+                            return {
+                                id: modifiersGroup.id,
+                                name: modifiersGroup.Name,
+                                description: modifiersGroup.Description,
+                                modifiers: _.map(modifiersGroup.Modifiers, modifier => {
+                                    return {
+                                        id: modifier.id,
+                                        name: modifier.Name,
+                                        description: modifier.Description,
+                                        price: modifier.Price
+                                    }
+                                })
+                            }
+                        })
+                    }
+                })
+            }
+        })
+    }
+
+    angular.bootstrap(document, ['app']);
+
+
+
+</script>
+</body>
+</html>

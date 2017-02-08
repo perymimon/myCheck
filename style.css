@@ -1,0 +1,50 @@
+h1,h2{
+    text-align: center;
+}
+
+items-collection{
+    display: block;
+}
+
+items-collection > h1{
+
+}
+
+items-body{
+    display: block;
+    padding-left: 1em;
+}
+
+item{
+    display: block;
+}
+
+modifiers-group{
+    display: block;
+    font-style: italic;
+
+}
+
+modifiers{
+    display: block;
+
+}
+
+.description{
+    display: block;
+    font-style: italic;
+}
+
+.id{
+
+}
+
+.name{
+
+}
+
+.price{
+    float: right;
+    font-style: italic;
+    font-weight: bold;
+}
