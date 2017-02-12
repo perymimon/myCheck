@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>resturant menu</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Permanent+Marker" rel="stylesheet">
 
 
 </head>
@@ -16,20 +17,18 @@
 
         <items-body>
             <item ng-repeat="item in department.items track by $index" title="{{::item.id}}">
+                <span class="price" ng-bind="::item.price"></span>
                 <span class="name" ng-bind="::item.name"></span>
                 <span class="description" ng-bind="::item.description"></span>
-                <span class="price" ng-bind="::item.price"></span>
-                <modifiers-group ng-repeat="modifiersGroup in item.modifiersGroups">
-                    <span class="id" ng-bind="modifiersGroup.id"></span>
-                    <span class="name" ng-bind="modifiersGroup.name"></span>
+                <modifiers-group ng-repeat="modifiersGroup in item.modifiersGroups track by $index">
+                    <span class="name" ng-bind="modifiersGroup.name" title="{{::modifiersGroup.id}}"></span>
                     <span class="description" ng-bind="modifiersGroup.description"></span>
-                    <modifiers>
-                        <input type="checkbox" />
-                        <span class="id" ng-bind="::item.id"></span>
-                        <span class="name" ng-bind="::item.name"></span>
-                        <span class="description" ng-bind="::item.description"></span>
+                    <modifier ng-repeat="modifier in modifiersGroup track by $index">
                         <span class="price" ng-bind="::item.price"></span>
-                    </modifiers>
+                        <span class="name" ng-bind="::item.name" title="{{::modifiersGroup.id}}"></span>
+                        <input type="checkbox" />
+                        <span class="description" ng-bind="::item.description"></span>
+                    </modifier>
                 </modifiers-group>
             </item>
         </items-body>

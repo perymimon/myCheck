@@ -1,5 +1,10 @@
+body{
+
+}
+
 h1,h2{
     text-align: center;
+    Kfont-family: 'Permanent Marker', cursive;
 }
 
 items-collection{
@@ -19,14 +24,21 @@ item{
     display: block;
 }
 
+
 modifiers-group{
     display: block;
     font-style: italic;
+    padding-left: 1em;
+    border:1px solid;
 
 }
 
-modifiers{
-    display: block;
+modifier{
+    display: inline-block;
+    float: right;
+    font-style: normal;
+    padding: 0 1em;
+    font-size: .8em;
 
 }
 
