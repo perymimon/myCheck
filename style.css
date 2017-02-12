@@ -1,13 +1,21 @@
 body{
-
+ width: 50em;
 }
 
 h1,h2{
     text-align: center;
     Kfont-family: 'Permanent Marker', cursive;
+    text-transform: capitalize;
 }
 
-items-collection{
+h4{
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+    font-weight: normal;
+}
+
+items-group{
     display: block;
 }
 
@@ -22,29 +30,45 @@ items-body{
 
 item{
     display: block;
+    margin: 1em 0;
+
 }
 
+item > .price{
+    font-style: italic;
+    float: right;
+}
 
 modifiers-group{
     display: block;
     font-style: italic;
     padding-left: 1em;
-    border:1px solid;
+    margin-bottom: .5em;
 
+    clear: both;
+    overflow: hidden;
 }
 
 modifier{
     display: inline-block;
-    float: right;
     font-style: normal;
     padding: 0 1em;
     font-size: .8em;
+    width: 20%;
+    line-height: 1.5em;
+    white-space: nowrap;
 
+    float: left;
+}
+
+modifier > input{
+    float: left;
 }
 
 .description{
     display: block;
     font-style: italic;
+    clear: both;
 }
 
 .id{
@@ -52,11 +76,12 @@ modifier{
 }
 
 .name{
-
+    text-transform: capitalize;
 }
 
 .price{
-    float: right;
-    font-style: italic;
+
     font-weight: bold;
+    line-height: 1.5;
+    margin: 0 1em;
 }

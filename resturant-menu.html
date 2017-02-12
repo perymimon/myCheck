@@ -11,30 +11,38 @@
 <body ng-controller="MenuController">
 <h1>Resturant Menu</h1>
 <menu>
-    <items-collection ng-repeat="department in menu track by $index" >
+    <items-group ng-repeat="department in menu track by $index" >
         <h2 ng-bind="::department.name" title="{{::department.id}}"></h2>
         <description ng-bind="::department.description"></description>
 
         <items-body>
             <item ng-repeat="item in department.items track by $index" title="{{::item.id}}">
+
+                <h4 class="name" ng-bind="::item.name"></h4>
                 <span class="price" ng-bind="::item.price"></span>
-                <span class="name" ng-bind="::item.name"></span>
                 <span class="description" ng-bind="::item.description"></span>
+
                 <modifiers-group ng-repeat="modifiersGroup in item.modifiersGroups track by $index">
-                    <span class="name" ng-bind="modifiersGroup.name" title="{{::modifiersGroup.id}}"></span>
-                    <span class="description" ng-bind="modifiersGroup.description"></span>
-                    <modifier ng-repeat="modifier in modifiersGroup track by $index">
-                        <span class="price" ng-bind="::item.price"></span>
-                        <span class="name" ng-bind="::item.name" title="{{::modifiersGroup.id}}"></span>
-                        <input type="checkbox" />
-                        <span class="description" ng-bind="::item.description"></span>
+
+                    <div class="name" ng-bind="modifiersGroup.name" title="{{::modifiersGroup.id}}"></div>
+                    <div class="description" ng-bind="modifiersGroup.description"></div>
+
+                    <modifier ng-repeat="modifier in modifiersGroup.modifiers track by $index">
+                        <label >
+                            <input type="checkbox" />
+                            <span class="name"  ng-bind="::modifier.name" title="{{::modifier.id}}"></span>
+                            <span class="price" ng-if="::modifier.price != 0" >+{{::modifier.price}}</span>
+
+                            <span class="description" ng-bind="::modifier.description"></span>
+                        </label>
+
                     </modifier>
                 </modifiers-group>
             </item>
         </items-body>
 
 
-    </items-collection>
+    </items-group>
 
 
 </menu>
