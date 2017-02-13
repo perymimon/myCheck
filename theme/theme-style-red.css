@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css?family=Codystar');
+
+h1,h2{
+    text-transform: uppercase;
+
+    font-family: 'Codystar', cursive;
+}
+
+h2{
+    border-bottom: 5px solid #BBA58D;
+    letter-spacing: 2px;
+}
+
+h4{
+}
+
+menu{
+    background-color: #CC473E;
+    color: white;
+    padding: 0 2em;
+    /*font-family: 'Londrina Outline', cursive;*/
+}
+
+menu .name{
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+
+}
+
+department{
+
+}
+
+item{
+    color: hsla(31, 42%, 64%, 1);
+}
+
+item > .price{
+
+}
+
+modifiers-group .name{
+    font-size: 0.8em;
+}
+
+modifier {
+    font-size: 0.7em;
+    user-select: none;
+}
+
+label{
+    cursor: pointer;
+}
+
+modifier input{
+    display: none;
+}
+
+[type=checkbox]:checked + modifier  .name{
+    font-weight: bold;
+    text-shadow: 0px 0px 17px white;
+}
+
+.description{
+
+}
+
+.name{
+
+}
+
+.price{
+
+}

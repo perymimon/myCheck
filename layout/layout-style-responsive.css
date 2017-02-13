@@ -1,11 +1,10 @@
 body{
- width: 50em;
+
 }
 
 h1,h2{
     text-align: center;
-    Kfont-family: 'Permanent Marker', cursive;
-    text-transform: capitalize;
+
 }
 
 h4{
@@ -13,9 +12,13 @@ h4{
     padding: 0;
     display: inline-block;
     font-weight: normal;
+    /*font-family: 'Permanent Marker', cursive;*/
+}
+menu{
+    padding: 1em;
 }
 
-items-group{
+department{
     display: block;
 }
 
@@ -39,15 +42,34 @@ item > .price{
     float: right;
 }
 
+item :checked ~ label h4{
+    color: hsla(31, 42%, 86%, 1);
+}
+
 modifiers-group{
-    display: block;
+    /*display: block;*/
     font-style: italic;
     padding-left: 1em;
     margin-bottom: .5em;
 
+    min-width: 18em;
     clear: both;
     overflow: hidden;
+    /*animation init*/
+    max-height: 0;
+    display: none;
 }
+
+:checked ~ modifiers-group{
+    display: block;
+    max-height: 200em;
+    transition: all  2s;
+}
+
+modifiers-group input{
+    display: none;
+}
+
 
 modifier{
     display: inline-block;
@@ -57,7 +79,25 @@ modifier{
     width: 20%;
     line-height: 1.5em;
     white-space: nowrap;
+    height: 1.5em;
+    min-width: 13em;
 
+    float: left;
+
+    /*animation init*/
+    opacity: 0;
+    display: none;
+}
+
+
+[type=checkbox]:checked + modifier,
+[name=modifiersGroup]:checked ~ modifier{
+    display: inline-block;
+    opacity: 1;
+    transition: all  2s;
+}
+
+modifier *{
     float: left;
 }
 

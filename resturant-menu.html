@@ -3,46 +3,101 @@
 <head>
     <meta charset="UTF-8">
     <title>resturant menu</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css?family=Permanent+Marker" rel="stylesheet">
 
+    <link href="https://fonts.googleapis.com/css?family=Permanent+Marker" rel="stylesheet">
+    <link rel="stylesheet" href="normalize.css">
 
 </head>
 <body ng-controller="MenuController">
-<h1>Resturant Menu</h1>
+<bar ng-controller="BarController">
+
+        <style>
+            bar{
+                display: block;
+                background-color: #061323;
+                overflow: hidden;
+                padding: 0.5em;
+                border-radius: 0.5em;
+            }
+            bar label{
+                padding: 0 1em;
+                color:#bba58d;
+                float: left;
+            }
+        </style>
+
+        <label>
+            layout
+            <select ng-model="context.layout" ng-change="changeStyleTheme('layout', context.layout)">
+                <option value="layout/layout-style-fix.css">fixed</option>
+                <option value="layout/layout-style-responsive.css">responsive</option>
+            </select>
+            <link rel="stylesheet" id="layout" href="layout/layout-style-fix.css">
+        </label>
+
+        <label >
+            theme
+            <select ng-model="context.theme" ng-change="changeStyleTheme('theme', context.theme)">
+                <option value="">no theme</option>
+                <option value="theme/theme-style-red.css">red</option>
+                <option value="theme/theme-style-outline.css">outline</option>
+            </select>
+            <link rel="stylesheet" id="theme" >
+        </label>
+
+
+</bar>
+
+
 <menu>
-    <items-group ng-repeat="department in menu track by $index" >
-        <h2 ng-bind="::department.name" title="{{::department.id}}"></h2>
-        <description ng-bind="::department.description"></description>
+    <h1>Resturant Menu</h1>
 
-        <items-body>
-            <item ng-repeat="item in department.items track by $index" title="{{::item.id}}">
+    <department-container>
+        <department ng-repeat="department in menu track by $index">
 
-                <h4 class="name" ng-bind="::item.name"></h4>
-                <span class="price" ng-bind="::item.price"></span>
+
+            <h2 ng-bind="::department.name" id="{{::department.id}}"></h2>
+            <description ng-bind="::department.description"></description>
+
+            <item ng-repeat="item in department.items track by $index" >
+                <input type="checkbox" name="item" id="{{item.id}}">
+                <label for="{{item.id}}">
+                    <h4 class="name" ng-bind="::item.name"></h4>
+                </label>
+
+                <span class="price" >${{::item.price}}</span>
                 <span class="description" ng-bind="::item.description"></span>
 
                 <modifiers-group ng-repeat="modifiersGroup in item.modifiersGroups track by $index">
+                    <input type="radio" name="modifiersGroup" id="{{::modifiersGroup.id}}">
+                    <label for="{{::modifiersGroup.id}}">
+                        <div class="name" ng-bind="modifiersGroup.name" ></div>
+                    </label>
 
-                    <div class="name" ng-bind="modifiersGroup.name" title="{{::modifiersGroup.id}}"></div>
                     <div class="description" ng-bind="modifiersGroup.description"></div>
 
-                    <modifier ng-repeat="modifier in modifiersGroup.modifiers track by $index">
-                        <label >
-                            <input type="checkbox" />
-                            <span class="name"  ng-bind="::modifier.name" title="{{::modifier.id}}"></span>
+                    <input type="checkbox"
+                           id="{{modifier.id}}"
+                           ng-repeat-start="modifier in modifiersGroup.modifiers track by $index"/>
+                    <modifier ng-repeat-end>
+                        <label for="{{modifier.id}}">
+
+                            <span class="name"  ng-bind="::modifier.name" ></span>
                             <span class="price" ng-if="::modifier.price != 0" >+{{::modifier.price}}</span>
 
                             <span class="description" ng-bind="::modifier.description"></span>
                         </label>
-
                     </modifier>
+
                 </modifiers-group>
+
             </item>
-        </items-body>
 
 
-    </items-group>
+
+        </department>
+    </department-container>
+
 
 
 </menu>
@@ -50,53 +105,8 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.4/lodash.js"></script>
-<script>
-    var app = angular.module('app', [])
-        .controller('MenuController', function($scope,$http) {
-            var url = "menu.json";
-            $http.get(url).then(function (res) {
-                $scope.menu = cleanData(res.data);
-            })
-
-        });
-
-    function cleanData(columns){
-        return _.map(columns, department =>  {
-            return {
-                id: department.id,
-                name: department.Name,
-                description: department.Description,
-                items: _.map(department.Classes[0].Items, item => {
-                    return {
-                        id: item.id,
-                        name: item.Name,
-                        description: item.Description,
-                        price: item.Price,
-                        modifiersGroups: _.map(item.ModifierGroups, modifiersGroup => {
-                            return {
-                                id: modifiersGroup.id,
-                                name: modifiersGroup.Name,
-                                description: modifiersGroup.Description,
-                                modifiers: _.map(modifiersGroup.Modifiers, modifier => {
-                                    return {
-                                        id: modifier.id,
-                                        name: modifier.Name,
-                                        description: modifier.Description,
-                                        price: modifier.Price
-                                    }
-                                })
-                            }
-                        })
-                    }
-                })
-            }
-        })
-    }
-
-    angular.bootstrap(document, ['app']);
+<script src="script.js"></script>
 
 
-
-</script>
 </body>
 </html>

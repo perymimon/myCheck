@@ -1,0 +1,14 @@
+a:active{
+    color: inherit;
+}
+/*:not(:active){*/
+    /*color: hsla(31, 42%, 64%, 1);*/
+/*}*/
+/*item:active{*/
+    /*color: hsla(31, 42%, 86%, 1);*/
+/*}*/
+input{
+    display: none;
+}
+
+

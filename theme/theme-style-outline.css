@@ -1,0 +1,86 @@
+@import url('https://fonts.googleapis.com/css?family=Codystar');
+
+h1,h2{
+    text-transform: uppercase;
+    font-family: 'Codystar', cursive;
+}
+
+h2{
+    border-bottom: 5px dotted hsl(153, 39%, 68%);
+    letter-spacing: 2px;
+    text-align: left;
+    padding: 0 1em 0.5em;
+}
+
+h4{
+}
+
+menu{
+    border: 5px solid #CC473E;
+    color: hsla(4, 55%, 52%, 1);
+    padding: 0 2em;
+    font-family: 'Londrina Outline', cursive;
+    border-radius: 5em;
+    font-family: 'Londrina Outline', cursive;
+}
+
+menu .name{
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+
+}
+department-container{
+    columns: 2;
+    display: block;
+}
+
+department{
+    display: block;
+    background-color: hsla(153, 39%, 94%, 1);
+    padding: 0.2em 0.5em;
+    margin: 0.5em;
+    border-radius: 3em;
+    break-inside: avoid;
+}
+
+item{
+    color: hsla(31, 42%, 64%, 1);
+}
+
+item > .price{
+
+}
+
+modifiers-group .name{
+    font-size: 0.8em;
+}
+
+modifier {
+    font-size: 0.7em;
+    user-select: none;
+}
+
+label{
+    cursor: pointer;
+}
+
+modifier input{
+    display: none;
+}
+
+[type=checkbox]:checked + modifier  .name{
+    font-weight: bold;
+    text-shadow: 0px 0px 17px white;
+}
+
+.description{
+
+}
+
+.name{
+
+}
+
+.price{
+
+}
