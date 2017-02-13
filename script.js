@@ -38,8 +38,8 @@ var app = angular.module('app', [])
 
             function get(){
                 var url = "menu.json";
-                $http.get(url).then(function (res) {
-                    $scope.menu = cleanData(res.data);
+                return $http.get(url).then(function (res) {
+                    return  cleanData(res.data);
                 })
             }
 
