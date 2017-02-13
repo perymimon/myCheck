@@ -22,6 +22,8 @@ menu{
     font-family: 'Londrina Outline', cursive;
     border-radius: 5em;
     font-family: 'Londrina Outline', cursive;
+    /*box-shadow: inset 0 0 8px black;*/
+    box-shadow: inset 0 0 0px #cc473e;
 }
 
 menu .name{
@@ -41,6 +43,7 @@ department{
     margin: 0.5em;
     border-radius: 3em;
     break-inside: avoid;
+    box-shadow: inset 0 0 1px #bba58d;
 }
 
 item{
