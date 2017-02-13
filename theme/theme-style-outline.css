@@ -18,7 +18,7 @@ h4{
 menu{
     border: 5px solid #CC473E;
     color: hsla(4, 55%, 52%, 1);
-    padding: 0 2em;
+    padding: 0 2em 1em;
     font-family: 'Londrina Outline', cursive;
     border-radius: 5em;
     font-family: 'Londrina Outline', cursive;
@@ -82,5 +82,19 @@ modifier input{
 }
 
 .price{
+
+}
+
+@media all and (max-width: 790px){
+    department-container{
+        columns: 1;
+    }
+
+}
+
+@media all and (min-width: 1170px){
+    department-container{
+        columns: 3;
+    }
 
 }

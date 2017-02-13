@@ -36,45 +36,45 @@ var app = angular.module('app', [])
             get:get
         };
 
-            function get(){
-                var url = "menu.json";
-                return $http.get(url).then(function (res) {
-                    return  cleanData(res.data);
-                })
-            }
+        function get(){
+            var url = "menu.json";
+            return $http.get(url).then(function (res) {
+                return cleanData(res.data);
+            })
+        }
 
-            function cleanData(columns){
-                return _.map(columns, department =>  {
-                    return {
-                        id: department.id,
-                        name: department.Name,
-                        description: department.Description,
-                        items: _.map(department.Classes[0].Items, item => {
-                            return {
-                                id: item.id,
-                                name: item.Name,
-                                description: item.Description,
-                                price: item.Price,
-                                modifiersGroups: _.map(item.ModifierGroups, modifiersGroup => {
-                                    return {
-                                        id: modifiersGroup.id,
-                                        name: modifiersGroup.Name,
-                                        description: modifiersGroup.Description,
-                                        modifiers: _.map(modifiersGroup.Modifiers, modifier => {
-                                            return {
-                                                id: modifier.id,
-                                                name: modifier.Name,
-                                                description: modifier.Description,
-                                                price: modifier.Price
-                                            }
-                                        })
-                                    }
-                                })
-                            }
-                        })
-                    }
-                })
-            }
+        function cleanData(columns){
+            return _.map(columns, department =>  {
+                return {
+                    id: department.id,
+                    name: department.Name,
+                    description: department.Description,
+                    items: _.map(department.Classes[0].Items, item => {
+                        return {
+                            id: item.id,
+                            name: item.Name,
+                            description: item.Description,
+                            price: item.Price,
+                            modifiersGroups: _.map(item.ModifierGroups, modifiersGroup => {
+                                return {
+                                    id: modifiersGroup.id,
+                                    name: modifiersGroup.Name,
+                                    description: modifiersGroup.Description,
+                                    modifiers: _.map(modifiersGroup.Modifiers, modifier => {
+                                        return {
+                                            id: modifier.id,
+                                            name: modifier.Name,
+                                            description: modifier.Description,
+                                            price: modifier.Price
+                                        }
+                                    })
+                                }
+                            })
+                        }
+                    })
+                }
+            })
+        }
 
         })
     ;
